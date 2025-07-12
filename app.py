@@ -133,6 +133,8 @@ def get_report(scan_id):
         return jsonify({'error': error_info['error']}), 500
 
 if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
     # Create results directory if it doesn't exist
     results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
     if not os.path.exists(results_dir):
