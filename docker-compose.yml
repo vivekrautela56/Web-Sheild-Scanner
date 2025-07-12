@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  webshield:
+    build: .
+    container_name: webshield-scanner
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./results:/app/results
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=app.py
+    networks:
+      - webshield-network
+
+networks:
+  webshield-network:
+    driver: bridge

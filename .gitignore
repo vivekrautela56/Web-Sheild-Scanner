@@ -1,0 +1,34 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Scan results (except .gitkeep)
+results/*
+!results/.gitkeep
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db

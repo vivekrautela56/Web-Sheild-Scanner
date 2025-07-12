@@ -1,0 +1,142 @@
+/* Additional custom styles beyond Tailwind CSS */
+
+/* Animated gradient background for header */
+.gradient-animation {
+    background: linear-gradient(-45deg, #3b82f6, #06b6d4, #0ea5e9, #2563eb);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Custom card hover effects */
+.scan-card {
+    transition: all 0.3s ease;
+}
+
+.scan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Terminal-like styling for output area */
+.terminal {
+    font-family: 'Courier New', monospace;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.terminal-line {
+    padding: 2px 0;
+    line-height: 1.4;
+}
+
+/* Custom styling for the download buttons */
+.download-btn {
+    transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Custom loader animation */
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #38bdf8;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .scan-card {
+        padding: 0.75rem;
+    }
+    
+    .download-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Navigation Styling */
+nav {
+    border-bottom: 2px solid #0891b2;
+}
+
+nav a {
+    font-weight: 500;
+    position: relative;
+}
+
+nav a.text-white:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #0ea5e9;
+    transform: scaleX(1);
+}
+
+nav a:hover:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #0ea5e9;
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+/* Terminal Styling */
+.terminal {
+    font-family: 'Courier New', monospace;
+    background-color: #0f172a;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+.terminal div {
+    margin-bottom: 0.5rem;
+}
+
+/* Hidi scan card specific styling */
+.hidi-scan-card {
+    border-left: 4px solid #06b6d4;
+}

@@ -1,0 +1,35 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="webshield-scanner",
+    version="1.0.0",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+        "Flask>=2.3.3",
+        "Werkzeug>=2.3.7",
+        "pdfkit>=1.0.0",
+        "Flask-SocketIO>=5.3.4",
+        "python-socketio>=5.8.0",
+        "python-engineio>=4.5.1",
+        "gevent>=23.9.0",
+        "gevent-websocket>=0.10.1",
+    ],
+    author="WebShield Team",
+    author_email="webshield@example.com",
+    description="A modern web vulnerability scanning application",
+    keywords="security, vulnerability, scanner, web, nmap, nikto, wapiti",
+    url="https://github.com/yourusername/webshield-scanner",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Information Technology",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Security",
+    ],
+    python_requires=">=3.7",
+)

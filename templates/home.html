@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebShield Scanner - Home</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col">
+    <div class="container mx-auto px-4 py-8 flex-grow">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 gradient-animation p-2">
+                <i class="fas fa-shield-alt mr-2"></i>WebShield Scanner
+            </h1>
+            <p class="text-slate-400 text-lg">Advanced Web Vulnerability Scanning Tool</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-slate-900 border-b border-slate-800 w-full py-4">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-blue-500 mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="text-white font-bold">WebShield Scanner</div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/" class="text-white font-medium">Home</a>
+                    <a href="/scan" class="text-gray-300 hover:text-white transition-colors duration-300">Scan</a>
+                    <a href="/about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <div class="bg-slate-800 rounded-lg shadow-lg p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                        <h2 class="text-3xl font-bold mb-4 text-cyan-400">Secure Your Web Applications</h2>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            WebShield Scanner is a comprehensive security tool designed to identify vulnerabilities in web applications and network infrastructure. Our all-in-one solution combines multiple scanning technologies to provide thorough security assessments.
+                        </p>
+                        <a href="/scan" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-md transition-all transform hover:scale-105">
+                            <i class="fas fa-shield-alt mr-2"></i>Start Scanning
+                        </a>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                            <div class="terminal h-64">
+                                <div class="text-green-400">$ ./webshield-scanner</div>
+                                <div class="text-slate-300">Initializing WebShield Scanner v1.0.0...</div>
+                                <div class="text-slate-300">Loading modules: Nmap, Nikto, Wapiti, Ffuf</div>
+                                <div class="text-green-400">All modules loaded successfully!</div>
+                                <div class="text-slate-300">WebShield Scanner ready for operation</div>
+                                <div class="text-cyan-400">Available scan types:</div>
+                                <div class="text-slate-300">- Network scanning (Nmap)</div>
+                                <div class="text-slate-300">- Web server vulnerability scanning (Nikto)</div>
+                                <div class="text-slate-300">- Web application vulnerability scanning (Wapiti)</div>
+                                <div class="text-slate-300">- Hidden directory discovery (Ffuf)</div>
+                                <div class="text-yellow-400">Please select a scan type to continue...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Nmap Feature -->
+                <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
+                    <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Network Scanning</h3>
+                    <p class="text-slate-300">Discover open ports, services, and potential network vulnerabilities with Nmap integration.</p>
+                </div>
+                
+                <!-- Nikto Feature -->
+                <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
+                    <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-search"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Web Server Analysis</h3>
+                    <p class="text-slate-300">Identify web server vulnerabilities, misconfigurations, and outdated software with Nikto.</p>
+                </div>
+                
+                <!-- Wapiti Feature -->
+                <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
+                    <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-spider"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Application Security</h3>
+                    <p class="text-slate-300">Detect web application vulnerabilities like XSS, SQL injection, and more with Wapiti scanning.</p>
+                </div>
+                
+                <!-- Ffuf Feature -->
+                <div class="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors">
+                    <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-folder-open"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Hidden Directory Discovery</h3>
+                    <p class="text-slate-300">Find hidden directories and files in web applications using the powerful Ffuf fuzzing tool.</p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-lg p-8 text-center">
+                <h2 class="text-2xl font-bold mb-4">Ready to secure your web applications?</h2>
+                <p class="text-slate-300 mb-6 max-w-2xl mx-auto">Start scanning now to identify security vulnerabilities before attackers do.</p>
+                <a href="/scan" class="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-md transition-colors">
+                    <i class="fas fa-shield-alt mr-2"></i>Launch Scanner
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 py-6 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-slate-400 text-sm">&copy; 2025 WebShield Scanner. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="/" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-home mr-1"></i>Home</a>
+                    <a href="/scan" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-crosshairs mr-1"></i>Scan</a>
+                    <a href="/about" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-info-circle mr-1"></i>About</a>
+                    <a href="https://github.com/secuRaven" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-1"></i>GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle dropdown menu on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                const dropdown = document.querySelector('.group');
+                if (!dropdown.contains(event.target)) {
+                    const dropdownMenu = dropdown.querySelector('div[role="menu"]').parentElement;
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

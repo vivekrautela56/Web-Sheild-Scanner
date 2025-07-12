@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan - WebShield Scanner</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col">
+    <div class="container mx-auto px-4 py-8 flex-grow">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 gradient-animation p-2">
+                <i class="fas fa-shield-alt mr-2"></i>WebShield Scanner
+            </h1>
+            <p class="text-slate-400 text-lg">Advanced Web Vulnerability Scanning Tool</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-slate-900 border-b border-slate-800 w-full py-4">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-blue-500 mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="text-white font-bold">WebShield Scanner</div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a>
+                    <a href="/scan" class="text-white font-medium">Scan</a>
+                    <a href="/about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Scan Options Section -->
+            <div class="lg:col-span-1">
+                <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-crosshairs text-cyan-400 mr-2"></i>Scan Options
+                    </h2>
+                    
+                    <!-- Target Input -->
+                    <div class="mb-6">
+                        <label for="target" class="block text-sm font-medium text-slate-300 mb-2">Target URL/IP</label>
+                        <input type="text" id="target" placeholder="e.g., example.com or 192.168.1.1" 
+                               class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                    </div>
+
+                    <!-- Scan Cards -->
+                    <div class="space-y-4">
+                        <!-- Nmap Scan Card -->
+                        <div class="scan-card bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer" data-scan="nmap">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium"><i class="fas fa-network-wired text-cyan-400 mr-2"></i>Nmap Scan</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Port scanning & service detection</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Nikto Scan Card -->
+                        <div class="scan-card bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer" data-scan="nikto">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium"><i class="fas fa-search text-cyan-400 mr-2"></i>Nikto Scan</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Web server vulnerability scanner</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Wapiti Scan Card -->
+                        <div class="scan-card bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer" data-scan="wapiti">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium"><i class="fas fa-spider text-cyan-400 mr-2"></i>Wapiti Scan</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Web application vulnerability scanner</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-slate-400"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidi Scan Card -->
+                        <div class="scan-card bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer" data-scan="hidi">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-medium"><i class="fas fa-folder-open text-cyan-400 mr-2"></i>Hidi Scan</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Hidden directory discovery using Ffuf</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-slate-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scan Output Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-slate-800 rounded-lg shadow-lg p-6 h-full flex flex-col">
+                    <!-- Output Header -->
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold flex items-center">
+                            <i class="fas fa-terminal text-cyan-400 mr-2"></i><span id="output-title">Scan Output</span>
+                        </h2>
+                        <div id="scan-controls" class="hidden">
+                            <button id="stop-scan" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm flex items-center">
+                                <i class="fas fa-stop mr-1"></i>Stop Scan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Scan Status -->
+                    <div id="scan-status" class="mb-4 hidden">
+                        <div class="flex items-center">
+                            <div class="animate-pulse-slow mr-2 h-3 w-3 rounded-full bg-cyan-400"></div>
+                            <span id="status-text" class="text-sm text-cyan-400">Initializing scan...</span>
+                        </div>
+                        <div class="mt-2 w-full bg-slate-700 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Output Area -->
+                    <div id="output-area" class="flex-grow terminal custom-scrollbar">
+                        <div class="text-slate-500 text-center py-10">
+                            <i class="fas fa-terminal text-4xl mb-3"></i>
+                            <p>Select a scan type and target to begin</p>
+                        </div>
+                    </div>
+
+                    <!-- Report Download Section -->
+                    <div id="report-section" class="mt-4 pt-4 border-t border-slate-700 hidden">
+                        <h3 class="text-lg font-medium mb-3">Download Report</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="download-btn" data-format="txt">
+                                <i class="fas fa-file-alt mr-1"></i>TXT
+                            </button>
+                            <button class="download-btn" data-format="html">
+                                <i class="fas fa-file-code mr-1"></i>HTML
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 py-6 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-slate-400 text-sm">&copy; 2025 WebShield Scanner. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="/" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-home mr-1"></i>Home</a>
+                    <a href="/scan" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-crosshairs mr-1"></i>Scan</a>
+                    <a href="/about" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fas fa-info-circle mr-1"></i>About</a>
+                    <a href="https://github.com/secuRaven" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors"><i class="fab fa-github mr-1"></i>GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Nmap Options Modal -->
+    <div id="nmap-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-slate-800 rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold"><i class="fas fa-network-wired text-cyan-400 mr-2"></i>Nmap Scan Options</h3>
+                <button id="close-nmap-modal" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-3">
+                <div class="bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer nmap-option" data-option="open_ports">
+                    <h4 class="font-medium"><i class="fas fa-door-open text-cyan-400 mr-2"></i>Open Ports Scan</h4>
+                    <p class="text-sm text-slate-400 mt-1">Scan all ports to find open services</p>
+                </div>
+                <div class="bg-slate-700 hover:bg-slate-600 transition-colors rounded-lg p-4 cursor-pointer nmap-option" data-option="version_detection">
+                    <h4 class="font-medium"><i class="fas fa-tags text-cyan-400 mr-2"></i>Version Detection Scan</h4>
+                    <p class="text-sm text-slate-400 mt-1">Detect service versions on open ports</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
